@@ -1,0 +1,183 @@
+html, body {
+    background: linear-gradient( to right, #070707 10%, #0a0a0a 20%, #0f0f0f 30%,
+    #121212 40%, #151515 50%, #171717 60%, #1a1a1a 70%, #1c1c1c 80%, #1f1f1f 90%,
+    #212121 100%);
+    height: 100%;
+    color: #fff;
+    min-height: 700px;
+}
+body {
+}
+
+body a {
+    color: #fff;
+}
+
+p {
+    word-break: keep-all;
+}
+
+.title {
+    position: relative;
+    float: left;
+    z-index: 999;
+    padding: 40px;
+    margin-left: 50px;
+    height: 100%;
+    width: 350px;
+}
+
+.title:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 1px;
+    border-left: 1px solid #444;
+}
+.title .top {
+    margin-bottom: 10px;
+}
+
+.title h1 {
+    margin-bottom: 25px;
+    font-size: 30px;
+}
+
+.title .box {
+    display: inline-block;
+    margin-bottom: 10px;
+}
+.title .img-box {
+    text-align: center;
+}
+
+.title .img-box .img {
+    display: inline-block;
+    width: 40%;
+    margin-bottom: 20px;
+}
+
+
+.menu {
+    position: relative;
+    width: 63%;
+    overflow: scroll;
+    float: left;
+}
+
+.menu h1 {
+    margin-left: 30px;
+    margin-bottom: 20px;
+    font-size: 27px;
+}
+
+.menu .profile {
+    margin-left: 55px;
+    text-align: left;
+}
+
+.menu .profile li {
+    display: inline-block;
+    width: 29%;
+    vertical-align: top;
+    margin-bottom: 30px;
+    margin-right: 20px;
+    padding-right: 20px;
+}
+
+.menu .profile li p {
+    margin-top: 5px;
+    line-height: 1.5;
+}
+
+.menu .profile li .img {
+    width: 70%;
+    min-width: 130px;
+}
+
+.menu .profile li .work {
+    color: #aaa;
+    font-size: 15px;
+}
+
+.menu .profile li .name {
+    font-size: 27px;
+}
+
+.menu .profile li .task {
+    font-size: 13px;
+}
+
+.menu .profile li .email {
+    font-size: 10px;
+}
+
+.mb {
+    margin-bottom: 50px;
+}
+
+.mr-10 {
+    margin-right: 10px!important;
+}
+
+.ml-10 {
+    margin-left: 10px!important;
+}
+
+@media (max-width: 1070px) {
+    .title {
+        display: none;
+    }
+    .menu {
+        width: 100%;
+    }
+
+    .mobile h1 {
+        margin: 30px 0 0 20px;
+        font-size: 20px;
+    }
+    .menu .profile li {
+        vertical-align: top;
+        margin-bottom: 0;
+        margin-right: 0;
+        padding-right: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .menu .profile {
+        text-align: center;
+        margin-left: 0;
+    }
+
+    .menu .profile li {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+
+    .menu .profile li .img {
+        width: 100%;
+    }
+}
+
+
+@media (max-width: 500px) {
+    .menu .profile {
+        text-align: center;
+    }
+
+    .menu .profile li {
+        display: inline-block;
+        float: none;
+    }
+}
+
+.menu {
+    overflow-x: hidden;
+}
+
+.menu .content .block {
+    overflow-x: hidden;
+}

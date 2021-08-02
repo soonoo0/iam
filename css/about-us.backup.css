@@ -1,0 +1,489 @@
+html, body {
+    background: linear-gradient( to right, #070707 10%, #0a0a0a 20%, #0f0f0f 30%, #121212 40%, #151515 50%, #171717 60%, #1a1a1a 70%, #1c1c1c 80%, #1f1f1f 90%, #212121 100%);
+    height: 100%;
+    color: #fff;
+    min-height: 700px;
+}
+
+.body-back {
+    background: #111;
+}
+
+body a {
+    color: #fff;
+}
+
+p {
+    word-break: keep-all;
+}
+
+.title {
+    position: relative;
+    float: left;
+    z-index: 999;
+    padding: 40px;
+    margin-left: 50px;
+    height: 100%;
+    width: 350px;
+}
+
+.title:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 1px;
+    border-left: 1px solid #444;
+}
+
+.title .top {
+    margin-bottom: 10px;
+}
+
+.title h1 {
+    margin-bottom: 25px;
+    font-size: 30px;
+}
+
+
+.title .box {
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.line {
+    height: 1px;
+    width: 100%;
+    margin: 30px auto;
+    border-top: 1px solid #4404a8;
+}
+
+.title .img-box {
+    text-align: center;
+}
+
+.title .img-box .img {
+    display: inline-block;
+    width: 40%;
+    margin-bottom: 20px;
+}
+
+.mr-10 {
+    margin-right: 10px;
+}
+
+.ml-10 {
+    margin-left: 10px;
+}
+
+.menu {
+    position: relative;
+    height: 100%;
+    float: left;
+}
+
+.menu:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 1px;
+    border-left: 1px solid #444;
+}
+
+.menu .second-line {
+    content: '';
+    position: absolute;
+    left: 50%;
+    height: 100%;
+    width: 1px;
+    border-left: 1px solid #444;
+}
+
+.menu .nav {
+    position: relative;
+    margin-left: 30px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+}
+
+.menu .nav:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 1px;
+    width: 100%;
+    border-top: 1px solid #4404a8;
+}
+
+.menu h1 {
+    font-size: 26px;
+    line-height: 1.4;
+    margin-top: 30px;
+}
+
+
+.menu #comma {
+    position: absolute;
+    z-index: 1000;
+    bottom: -20px;
+}
+
+
+.menu .nav li {
+    float: left;
+    margin: 30px 0 0 30px;
+}
+
+.menu .nav li a {
+    color: #808080;
+}
+
+.menu .content {
+    width: 100%;
+}
+
+.menu .content .block {
+    float: left;
+    width: 50%;
+    padding: 0 30px 30px 30px;
+}
+
+@media (min-width: 1071px) {
+    .menu .content .block {
+        overflow: scroll;
+    }
+}
+
+.menu .content .mr {
+    position: relative;
+    padding-right: 0;
+}
+
+.menu .content .block h1 {
+    font-size: 28px;
+    line-height: 1.4;
+}
+
+.menu .content .block h2 {
+    padding-top: 20px;
+    margin-bottom: 20px;
+    font-size: 26px;
+}
+
+.menu .content .block .left-content {
+    margin-top: 25px;
+    font-size: 18px;
+    line-height: 1.9;
+
+}
+
+.menu .content .block .top {
+    width: 100%;
+    text-align: center;
+}
+
+.menu .content .block .bottom {
+    width: 50%;
+    text-align: center;
+    float: left;
+}
+
+.menu .content .block .circle,
+.menu .content .block .circle2 {
+    margin: 0 auto;
+    width: 35%;
+    border-radius: 50% 50%;
+}
+
+.menu .content .block .circle2 {
+    width: 70%;
+}
+
+.menu .content .block .blind {
+    float: left;
+    content: '';
+    width: 15%;
+    height: 200px;
+}
+
+.menu .content .block .number {
+    float: left;
+    color: #4404a8;
+    font-size: 20px;
+    width: 15%;
+    margin-top: 10px;
+}
+
+.menu .content .block .hide {
+    cursor: pointer;
+}
+
+.menu .content .block .con {
+    float: left;
+    width: 85%;
+    margin-top: 10px;
+}
+
+.menu .content .block .con h3 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    line-height: 1.5;
+    cursor: pointer;
+}
+
+.menu .content .block .con > div {
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+.menu .content .block .con .right-content {
+    color: #808080;
+    line-height: 1.9;
+}
+
+.menu .content .block .con .content-label {
+    margin-bottom: 10px;
+    padding-top: 15px;
+}
+
+.menu .content .block .con .img {
+    width: 100%;
+    height: 200px;
+    float: left;
+    margin-top: 25px;
+    margin-bottom: 30px;
+    background: #4404a8;
+}
+
+.menu .content .block .spirit-img {
+    text-align: center;
+    width: 100%;
+}
+
+.menu .content .block .spirit-img li {
+    display: inline-block;
+    width: 32%;
+    margin-bottom: 30px;
+    padding-right: 20px;
+}
+
+.menu .content .block .link {
+    margin-top: 35px;
+}
+
+.menu .content .block .link a {
+    color: #888;
+    border-bottom: 1px solid #888;
+    padding-top: 20px;
+}
+
+.mt {
+    margin-top: 50px;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+.pd {
+    padding: 20px;
+}
+
+
+@media (max-width: 1070px) {
+    .title {
+        display: none;
+    }
+    .menu {
+        width: 100%;
+    }
+
+    .menu:after {
+        display: none;
+    }
+
+    .menu .block {
+        width: 100%!important;
+        padding-top: 0!important;
+    }
+
+    #comma {
+        display: none;
+    }
+
+    .second-line {
+        display: none;
+    }
+
+    .menu .content .block {
+        overflow: auto;
+        padding: 0 20px 0 20px;
+    }
+
+    .menu .content .block .con .img {
+        width: 80%;
+    }
+
+    .mr {
+        padding: 30px!important;
+    }
+
+    .menu .content .block h1 {
+        margin-top: 0px;
+    }
+
+    .menu .content .block:nth-child(1) h1 {
+        margin-top: 20px;
+    }
+
+    .top-fix {
+        width: 100%;
+        position: fixed;
+        z-index: 99999;
+        top: 0;
+        left: 0;
+        padding-top: 18px;
+        background: linear-gradient( to right, #070707 10%, #0a0a0a 20%, #0f0f0f 30%,
+        #121212 40%, #151515 50%, #171717 60%, #1a1a1a 70%, #1c1c1c 80%, #1f1f1f 90%,
+        #212121 100%);
+        height: 75px;
+        border-bottom: 1px solid #333;
+        text-align: center;
+    }
+
+    .top-fix .top-line {
+        position: absolute;
+        top: 10px;
+        left: 0;
+        height: 1px;
+        width: 100%;
+        border-top: 1px solid #333;
+    }
+
+    .top-fix .left-line {
+        position: absolute;
+        top: 20px;
+        left: 62px;
+        height: 45px;
+        width: 1px;
+        border-right: 1px solid #333;
+    }
+
+    .top-fix .right-line {
+        position: absolute;
+        top: 20px;
+        right: 62px;
+        height: 45px;
+        width: 1px;
+        border-right: 1px solid #333;
+    }
+
+    .top-fix .back {
+        position: absolute;
+        top: 31px;
+        left: 20px;
+        height: 20px;
+        width: 20px;
+        cursor: pointer;
+    }
+
+    .top-fix .toggle {
+        position: absolute;
+        top: 29px;
+        right: 20px;
+        height: 30px;
+        width: 20px;
+        cursor: pointer;
+    }
+
+
+    .top-fix p {
+        font-size: 20px;
+        margin-top: 13px;
+    }
+
+    .mobile-menu {
+        margin-top: 70px;
+    }
+
+    .mobile-menu h1 {
+        font-size: 20px;
+    }
+
+    .mobile-menu ul {
+        margin-top: 20px;
+        display: flex;
+        text-align: center;
+    }
+
+    .mobile-menu ul a {
+        text-align: center;
+        display: inline-block;
+        flex: auto;
+    }
+
+    .mobile-menu ul a p {
+        margin-bottom: 10px;
+    }
+
+    .toggle-menu {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 999;
+        background: #111111;
+    }
+
+    .toggle-menu h1 {
+        margin-left: 20px;
+    }
+
+    .toggle-menu .toggle-line {
+        width: 100%;
+        height: 1px;
+        border-top: 1px solid #333;
+        margin-top: 40px;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .mobile-menu ul {
+        margin-top: 20px;
+        display: block;
+    }
+
+    .mobile-menu ul a {
+        text-align: center;
+        display: inline-block;
+        width: 18%;
+    }
+
+    .mobile-menu ul a p {
+        margin-top: 15px;
+        margin-bottom: 10px;
+        font-size: 8px;
+    }
+}
+
+.gray {
+    color: #808080;
+    padding-right: 20px;
+    padding-left: 10px;
+    font-size: 15px;
+}
+
+.appro-img,
+.sus-img {
+    width: 100%;
+    max-width: 430px;
+}
+
+#con2-c, #con3-c ,#con4-c, #con5-c, #con2-2-c {
+    display: none;
+}

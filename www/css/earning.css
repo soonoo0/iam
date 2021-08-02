@@ -1,0 +1,135 @@
+
+@media (min-width: 1071px) {
+    .menu {
+    position: relative;
+    width: 63%;
+    overflow: scroll;
+    float: left;
+    }
+
+}
+.menu .top-nav {
+    width: 100%;
+    margin: 10px 0 60px 0;
+    padding-bottom: 10px;
+    display: flex;
+}
+
+.menu .top-nav li {
+    flex: auto;
+}
+
+.menu .top-nav li h2 {
+    font-size: 24px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.menu .top-nav li .link {
+    border-bottom: 1px solid #444;
+}
+
+.menu .top-nav li .link a {
+    color: #808080;
+}
+
+.menu .list-title {
+    margin: 70px 0 70px 30px;
+}
+
+.menu .old-list {
+
+}
+
+.menu .old-list .btn {
+    position: relative;
+    font-size: 23px;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #666;
+    cursor: pointer;
+}
+
+.ml-0 {
+    margin-left: 0!important;
+}
+
+#1, #2, #3, #4 {
+    display: none;
+}
+
+@media (min-width: 1071px) {
+
+    .plus-minus-toggle {
+        cursor: pointer;
+        height: 21px;
+        position: absolute;
+        top: 15px;
+        right: 30px;
+        width: 21px;
+    }
+}
+.collapsed:after {
+    transform: rotate(90deg);
+}
+.collapsed:before {
+    transform: rotate(180deg);
+}
+
+.plus-minus-toggle:after {
+    transform-origin: center;
+}
+
+.plus-minus-toggle:after,
+.plus-minus-toggle:before {
+    background: #808080;
+    content: '';
+    height: 2px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 21px;
+    transition: transform 500ms ease;
+}
+
+@media (max-width: 1070px) {
+    .menu .old-list {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    .menu .top-nav li h2 {
+        font-size: 18px;
+    }
+    .menu .top-nav li .link a {
+        font-size: 16px;
+    }
+    .menu .old-list .btn {
+        font-size: 18px;
+    }
+    .menu .content .block:nth-child(1) h1{
+        margin-bottom: 30px;
+    }
+    .menu .list-title{
+        margin: 30px 0 30px 20px;
+    }
+    .menu .top-nav {
+        display: block;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .menu .top-nav li {
+        float: left;
+        width: 50%;
+        margin-bottom: 30px;
+    }
+
+    .plus-minus-toggle {
+        cursor: pointer;
+        height: 21px;
+        position: absolute;
+        right: 30px;
+        width: 21px;
+    }
+
+}

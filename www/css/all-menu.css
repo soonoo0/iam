@@ -1,0 +1,93 @@
+html, body {
+    background: linear-gradient( to right, #070707 10%, #0a0a0a 20%, #0f0f0f 30%,
+    #121212 40%, #151515 50%, #171717 60%, #1a1a1a 70%, #1c1c1c 80%, #1f1f1f 90%,
+    #212121 100%);
+    height: 100%;
+}
+
+header {
+    width: 100%;
+    padding: 10px;
+    z-index: 200;
+    border-bottom: 1px solid #ddd;
+}
+
+.header-text {
+    color: #fff;
+    font-size: 24px;
+    font-weight: 100;
+    text-align: left;
+    width: 100%;
+    z-index: 201;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-left: 30px;
+}
+
+.menu-list {
+    height: 100%;
+    max-width: 900px;
+    margin: 10px auto 0;
+}
+
+.menu-list .title a {
+    color: #fff;
+}
+
+.menu-list .img-list {
+    position: relative;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.menu-list .img-list li {
+    width: 100%;
+    height: 33.3%;
+    margin: 0 auto;
+    padding: 20px;
+    float: left;
+}
+
+.menu-list .img-list li img {
+    display: inline-block;
+    width: 40%;
+}
+
+.menu-list .img-list li p {
+    color: #fff;
+    font-size: 30px;
+    display: inline-block;
+    text-align: right;
+    line-height: 40%;
+    width: 55%;
+    vertical-align: bottom;
+    margin-bottom: 5px;
+}
+
+.menu-list .img-list li:hover p {
+    color: #6704ff;
+}
+
+.menu-list .nav-list {
+    position: relative;
+    width: 45%;
+    height: 100%;
+    float: left;
+}
+
+.menu-list .nav-list .menu {
+    text-align: center;
+    margin-top: 100px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.menu-list .nav-list .menu:hover{
+    border-bottom: 2px solid #714395;
+    border-top: 2px solid #714395;
+}
+
+.menu-list .nav-list .menu a {
+    font-size: 50px;
+    color: #fff;
+}

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>iAm NETWORK</title>
+    <meta charset="utf-8">
+    <meta name="google-site-verification" content="dVb507WU0uXAuiNANzyIpmGRdQ2VCdSCkciOiNbfot0"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<!--<div class="menu">
+    <ul class="list">
+        <li><a href="/about-us.html">ABOUT US</a></li>
+        <li><a href="/investment.html">INVESTMENT</a></li>
+        <li><a href="/business-d.html">BUSINESS DIVISION</a></li>
+        <li><a href="/affiliated.html">AFFILIATED COMPANIES</a></li>
+        <li><a href="/news.html">PR/NEWS</a></li>
+        <li><a href="/customer.html">CUSTOMER SERVICE</a></li>
+        <li><a href="/sns.html">SNS</a></li>
+    </ul>
+</div>-->
+<h1 onclick="moveMenu()">iAm NETWORK</h1>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/three.min.js"></script>
+<script src="js/DragControls.js"></script>
+<script>
+    $(function () {
+        var autoFont = function () {
+            $("h1").css('font-size', Math.max(Math.min($("body").width() / (1.1 * 15))));
+        };
+        if (window.innerWidth < 1400) {
+            autoFont();
+        }
+        $(window).resize(function () {
+            if (window.innerWidth < 1400) {
+                autoFont();
+            }
+        });
+    });
+
+    var SPEED = 0.02,
+        CAMERA_DISTANCE = 7,
+        IMAGE_SIZE = 3,
+        CAMERA_ANGLE_IN_DEGREES = 60,
+        RAIL_LENGTH,
+        IMAGES = [
+            'img/about-us.jpg',
+            'img/investment.jpg',
+            'img/division.jpg',
+            'img/affiliates.jpg',
+            'img/news.jpg',
+            'img/customer.jpg',
+            'img/sns.jpg'
+        ], // 사용하는 이미지들의 경로입니다.
+        TITLES = [
+            'iAm NETWORK',
+            'iAm NETWORK',
+            'iAm NETWORK',
+            'iAm NETWORK',
+            'iAm NETWORK',
+            'iAm NETWORK',
+            'iAm NETWORK',
+        ],
+        HREFS = [
+            '/all-menu.html',
+            '/all-menu.html',
+            '/all-menu.html',
+            '/all-menu.html',
+            '/all-menu.html',
+            '/all-menu.html',
+            '/all-menu.html',
+
+        ],
+        TOP_IMAGES = [],
+        BOTTOM_IMAGES = [],
+        LEFT_IMAGES = [],
+        RIGHT_IMAGES = [],
+        RATIO = window.innerWidth / window.innerHeight;
+
+    if (window.innerWidth < 1400) {
+        SPEED = 0.025
+    }
+
+    // 사용 되는 이미지들의 가로 세로 비율입니다.
+    var IMAGE_RATIO = [1.5 / 2, 1.5 / 2, 3 / 2, 1.5 / 2, 1.5 / 2, 1.5 / 2, 2.5 / 1.5],
+        IMAGE_DISTANCE = [0, 0.14, 0.28, 0.42, 0.56, 0.7, 0.84],
+        IMAGE_Z_DISTANCE = [0, 1, 2, 0, 2, 1, 2];
+    var camera, scene, renderer, light = new Array(5), mouse = new THREE.Vector2(), raycaster = new THREE.Raycaster();
+    var title = document.getElementsByTagName('h1')[0];
+
+    function getTanFromDegrees(degrees) {
+        return Math.tan(degrees * Math.PI / 180);
+    }
+
+    function init() {
+        TOP_IMAGES = [];
+        BOTTOM_IMAGES = [];
+        LEFT_IMAGES = [];
+        RIGHT_IMAGES = [];
+        RATIO = window.innerWidth / window.innerHeight;
+
+        RAIL_LENGTH = 4 * RATIO * CAMERA_DISTANCE * getTanFromDegrees(CAMERA_ANGLE_IN_DEGREES / 2) + 4 * CAMERA_DISTANCE * getTanFromDegrees(CAMERA_ANGLE_IN_DEGREES / 2);
+        camera = new THREE.PerspectiveCamera(
+            CAMERA_ANGLE_IN_DEGREES, RATIO, 1, 100);
+        camera.position.set(0, 0, CAMERA_DISTANCE);
+        scene = new THREE.Scene();
+        scene.background = new THREE.Color('black');
+
+        var container = document.body;
+        renderer = new THREE.WebGLRenderer();
+        renderer.shadowMap.enabled = true;
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        window.addEventListener('resize', onWindowResize, false);
+        window.addEventListener('mousemove', onMouseMove, false);
+        window.addEventListener('click', onMouseDown, false);
+        //모바일에서 터치 시 페이지 이동
+        //window.addEventListener('touchstart', onTouched, false);
+        container.appendChild(renderer.domElement);
+
+        for (var i = 0; i < 5; i++) {
+            light[i] = new THREE.PointLight('white', 0.5, CAMERA_DISTANCE * 2, 2);
+            light[i].position.set(0, 0, -i);
+            scene.add(light[i]);
+
+        }
+
+        // 이미지 생성 부분입니다.
+        // 윗면 이미지 생성
+        for (var i = 0; i < IMAGES.length; i++) {
+            var map = new THREE.TextureLoader().load(IMAGES[i]);
+            var geometry = new THREE.PlaneGeometry(IMAGE_SIZE, IMAGE_RATIO[i] * IMAGE_SIZE);
+            var material = new THREE.MeshLambertMaterial({map: map});
+            material.precision = 'lowp';
+
+            var plane = new THREE.Mesh(geometry, material);
+            plane.position.z = -IMAGE_RATIO[i] * IMAGE_SIZE / 2 - IMAGE_Z_DISTANCE[i];
+            plane.position.y = CAMERA_DISTANCE * getTanFromDegrees(CAMERA_ANGLE_IN_DEGREES / 2);
+            plane.position.x = IMAGE_DISTANCE[i] * RAIL_LENGTH - RATIO * CAMERA_DISTANCE * getTanFromDegrees(CAMERA_ANGLE_IN_DEGREES / 2);
+            plane.rotation.x = Math.PI / 2;
+            TOP_IMAGES.push(plane);
+        }
+        // 왼쪽면 이미지 생성
+        for (var i = 0; i < IMAGES.length; i++) {
+            var map = new THREE.TextureLoader().load(IMAGES[i]);
+            var geometry = new THREE.PlaneGeometry(IMAGE_SIZE, IMAGE_RATIO[i] * IMAGE_SIZE);
+            var material = new THREE.MeshLambertMaterial({map: map});
+            material.precision = 'lowp';
+            var plane = new THREE.Mesh(geometry, material);
+            plane.position.z = -IMAGE_RATIO[i] * IMAGE_SIZE / 2 - IMAGE_Z_DISTANCE[i];
+            plane.position.y = (IMAGE_DISTANCE[i] * RAIL_LENGTH + CAMERA_DISTANCE * getTanFromDegrees(CAMERA_ANGLE_IN_DEGREES / 2));
+            if (plane.position.y > RAIL_LENGTH) {
+                plane.position.y -= RAIL_LENGTH;
+            }
+            plane.position.x = -RATIO * CAMERA_DISTANCE * getTanFromDegrees(CAMERA_ANGLE_IN_DEGREES / 2);
+            plane.rotation.y = Math.PI / 2;
+            plane.rotation.x = Math.PI / 2;
+
+            LEFT_IMAGES.push(plane);
+        }
+        // 아랫면 이미지 생성
+        for (var i = 0; i < IMAGES.length; i++) {
+            var map = new THREE.TextureLoader().load(IMAGES[i]);
+            var geometry = new THREE.PlaneGeometry(IMAGE_SIZE, IMAGE_RATIO[i] * IMAGE_SIZE);
+            var material = new THREE.MeshLambertMaterial({map: map});
+            material.precision = 'lowp';
+
+            var plane = new THREE.Mesh(geometry, material);
+            plane.position.z = -IMAGE_RATIO[i] * IMAGE_SIZE / 2 - IMAGE_Z_DISTANCE[i];
+            plane.position.x = -(IMAGE_DISTANCE[i] * RAIL_LENGTH + (2 + RATIO) * CAMERA_DISTANCE * getTanFromDegrees(CAMERA_ANGLE_IN_DEGREES / 2));
+            if (plane.position.x < -RAIL_LENGTH) {
+                plane.position.x += RAIL_LENGTH;
+            }
+            plane.position.y = -CAMERA_DISTANCE * getTanFromDegrees(CAMERA_ANGLE_IN_DEGREES / 2);
+            plane.rotation.x = -Math.PI / 2;
+            plane.rotation.z = -Math.PI;
+            BOTTOM_IMAGES.push(plane);
+        }
+        // 오른쪽면 이미지 생성
+        for (var i = 0; i < IMAGES.length; i++) {
+            var map = new THREE.TextureLoader().load(IMAGES[i]);
+            var geometry = new THREE.PlaneGeometry(IMAGE_SIZE, IMAGE_RATIO[i] * IMAGE_SIZE);
+            var material = new THREE.MeshLambertMaterial({map: map});
+            material.precision = 'lowp';
+            var plane = new THREE.Mesh(geometry, material);
+            plane.position.z = -IMAGE_RATIO[i] * IMAGE_SIZE / 2 - IMAGE_Z_DISTANCE[i];
+            plane.position.x = RATIO * CAMERA_DISTANCE * getTanFromDegrees(CAMERA_ANGLE_IN_DEGREES / 2);
+            plane.position.y = -(IMAGE_DISTANCE[i] * RAIL_LENGTH + (3 + 2 * RATIO) * CAMERA_DISTANCE * getTanFromDegrees(CAMERA_ANGLE_IN_DEGREES / 2)) % RAIL_LENGTH;
+            plane.rotation.y = -Math.PI / 2;
+            plane.rotation.x = Math.PI / 2;
+            RIGHT_IMAGES.push(plane);
+        }
+        // 생성된 이미지를 씬에 추가합니다.
+        for (var i = 0; i < IMAGES.length; i++) {
+            TOP_IMAGES[i].title = LEFT_IMAGES[i].title = BOTTOM_IMAGES[i].title = RIGHT_IMAGES[i].title = TITLES[i];
+            TOP_IMAGES[i].href = LEFT_IMAGES[i].href = BOTTOM_IMAGES[i].href = RIGHT_IMAGES[i].href = HREFS[i];
+            scene.add(TOP_IMAGES[i]);
+            scene.add(LEFT_IMAGES[i]);
+            scene.add(BOTTOM_IMAGES[i]);
+            scene.add(RIGHT_IMAGES[i]);
+        }
+
+
+        // 클리퍼입니다.
+        var leftClippingPlane = new THREE.Plane(new THREE.Vector3(1, 0, 0), RATIO * CAMERA_DISTANCE * getTanFromDegrees(CAMERA_ANGLE_IN_DEGREES / 2));
+        var rightClippingPlane = new THREE.Plane(new THREE.Vector3(-1, 0, 0), RATIO * CAMERA_DISTANCE * getTanFromDegrees(CAMERA_ANGLE_IN_DEGREES / 2));
+        var topClippingPlane = new THREE.Plane(new THREE.Vector3(0, 1, 0), CAMERA_DISTANCE * getTanFromDegrees(CAMERA_ANGLE_IN_DEGREES / 2));
+        var bottomClippingPlane = new THREE.Plane(new THREE.Vector3(0, -1, 0), CAMERA_DISTANCE * getTanFromDegrees(CAMERA_ANGLE_IN_DEGREES / 2));
+
+        var clippingPlanes = [leftClippingPlane, rightClippingPlane, topClippingPlane, bottomClippingPlane];
+        renderer.clippingPlanes = clippingPlanes; // GUI sets it to globalPlanes
+        renderer.localClippingEnabled = true;
+
+    }
+
+    function onWindowResize() {
+        RAIL_LENGTH = 4 * RATIO * CAMERA_DISTANCE * getTanFromDegrees(CAMERA_ANGLE_IN_DEGREES / 2) + 4 * CAMERA_DISTANCE * getTanFromDegrees(CAMERA_ANGLE_IN_DEGREES / 2);
+        RATIO = window.innerWidth / window.innerHeight;
+        camera.aspect = RATIO;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+
+        // 이미지 생성 부분입니다.
+        // 윗면 이미지 생성
+        for (var i = 0; i < IMAGES.length; i++) {
+            TOP_IMAGES[i].position.z = -IMAGE_RATIO[i] * IMAGE_SIZE / 2 - IMAGE_Z_DISTANCE[i];
+            TOP_IMAGES[i].position.y = CAMERA_DISTANCE * getTanFromDegrees(CAMERA_ANGLE_IN_DEGREES / 2);
+            TOP_IMAGES[i].position.x = IMAGE_DISTANCE[i] * RAIL_LENGTH - RATIO * CAMERA_DISTANCE * getTanFromDegrees(CAMERA_ANGLE_IN_DEGREES / 2);
+        }
+        // 왼쪽면 이미지 생성
+        for (var i = 0; i < IMAGES.length; i++) {
+            LEFT_IMAGES[i].position.z = -IMAGE_RATIO[i] * IMAGE_SIZE / 2 - IMAGE_Z_DISTANCE[i];
+            LEFT_IMAGES[i].position.y = (IMAGE_DISTANCE[i] * RAIL_LENGTH + CAMERA_DISTANCE * getTanFromDegrees(CAMERA_ANGLE_IN_DEGREES / 2));
+            if (LEFT_IMAGES[i].position.y > RAIL_LENGTH) {
+                LEFT_IMAGES[i].position.y -= RAIL_LENGTH;
+            }
+            LEFT_IMAGES[i].position.x = -RATIO * CAMERA_DISTANCE * getTanFromDegrees(CAMERA_ANGLE_IN_DEGREES / 2);
+        }
+        // 아랫면 이미지 생성
+        for (var i = 0; i < IMAGES.length; i++) {
+            BOTTOM_IMAGES[i].position.z = -IMAGE_RATIO[i] * IMAGE_SIZE / 2 - IMAGE_Z_DISTANCE[i];
+            BOTTOM_IMAGES[i].position.x = -(IMAGE_DISTANCE[i] * RAIL_LENGTH + (2 + RATIO) * CAMERA_DISTANCE * getTanFromDegrees(CAMERA_ANGLE_IN_DEGREES / 2));
+            if (BOTTOM_IMAGES[i].position.x < -RAIL_LENGTH) {
+                BOTTOM_IMAGES[i].position.x += RAIL_LENGTH;
+            }
+            BOTTOM_IMAGES[i].position.y = -CAMERA_DISTANCE * getTanFromDegrees(CAMERA_ANGLE_IN_DEGREES / 2);
+        }
+        // 오른쪽면 이미지 생성
+        for (var i = 0; i < IMAGES.length; i++) {
+            RIGHT_IMAGES[i].position.z = -IMAGE_RATIO[i] * IMAGE_SIZE / 2 - IMAGE_Z_DISTANCE[i];
+            RIGHT_IMAGES[i].position.x = RATIO * CAMERA_DISTANCE * getTanFromDegrees(CAMERA_ANGLE_IN_DEGREES / 2);
+            RIGHT_IMAGES[i].position.y = -(IMAGE_DISTANCE[i] * RAIL_LENGTH + (3 + 2 * RATIO) * CAMERA_DISTANCE * getTanFromDegrees(CAMERA_ANGLE_IN_DEGREES / 2)) % RAIL_LENGTH;
+        }
+        // 클리퍼입니다.
+        var leftClippingPlane = new THREE.Plane(new THREE.Vector3(1, 0, 0), RATIO * CAMERA_DISTANCE * getTanFromDegrees(CAMERA_ANGLE_IN_DEGREES / 2));
+        var rightClippingPlane = new THREE.Plane(new THREE.Vector3(-1, 0, 0), RATIO * CAMERA_DISTANCE * getTanFromDegrees(CAMERA_ANGLE_IN_DEGREES / 2));
+        var topClippingPlane = new THREE.Plane(new THREE.Vector3(0, 1, 0), CAMERA_DISTANCE * getTanFromDegrees(CAMERA_ANGLE_IN_DEGREES / 2));
+        var bottomClippingPlane = new THREE.Plane(new THREE.Vector3(0, -1, 0), CAMERA_DISTANCE * getTanFromDegrees(CAMERA_ANGLE_IN_DEGREES / 2));
+
+        var clippingPlanes = [leftClippingPlane, rightClippingPlane, topClippingPlane, bottomClippingPlane];
+        renderer.clippingPlanes = clippingPlanes; // GUI sets it to globalPlanes
+        renderer.localClippingEnabled = true;
+
+    }
+
+    function onMouseMove(event) {
+        event = event || window.event;
+
+        var x = event.pageX;
+        var y = event.pageY;
+
+        // IE 8
+        if (x === undefined) {
+            x = event.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+            y = event.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+        }
+        x = x - window.innerWidth / 2;
+        y = -(y - window.innerHeight / 2);
+        var aspect = 2 * CAMERA_DISTANCE * getTanFromDegrees(CAMERA_ANGLE_IN_DEGREES / 2) / window.innerHeight;
+        for (var i = 0; i < 5; i++) {
+            light[i].position.set(x * aspect, y * aspect, -i);
+        }
+
+        mouse.x = (event.clientX / renderer.domElement.clientWidth) * 2 - 1;
+        mouse.y = -(event.clientY / renderer.domElement.clientHeight) * 2 + 1;
+
+        // update the picking ray with the camera and mouse position
+        raycaster.setFromCamera(mouse, camera);
+
+        // calculate objects intersecting the picking ray
+        var intersects = raycaster.intersectObjects(scene.children);
+
+        if (intersects.length > 0) {
+            title.innerText = intersects[0].object.title;
+            $('body').css('cursor', 'pointer');
+        } else {
+            $('body').css('cursor', 'default');
+            title.innerText = 'iAm NETWORK';
+        }
+
+    }
+
+    function onTouched(evt) {
+        evt.preventDefault();
+        var touches = evt.changedTouches;
+        if (touches.length > 2) {
+            return false;
+        }
+
+        mouse.x = (touches[0].pageX / renderer.domElement.clientWidth) * 2 - 1;
+        mouse.y = -(touches[0].pageY / renderer.domElement.clientHeight) * 2 + 1;
+        // update the picking ray with the camera and mouse position
+        raycaster.setFromCamera(mouse, camera);
+
+        // calculate objects intersecting the picking ray
+        var intersects = raycaster.intersectObjects(scene.children);
+
+        if (intersects.length > 0) {
+            window.location.href = intersects[0].object.href;
+        }
+
+        renderer.render(scene, camera);
+
+    }
+
+    function onMouseDown() {
+        event.preventDefault();
+
+        mouse.x = (event.clientX / renderer.domElement.clientWidth) * 2 - 1;
+        mouse.y = -(event.clientY / renderer.domElement.clientHeight) * 2 + 1;
+
+        // update the picking ray with the camera and mouse position
+        raycaster.setFromCamera(mouse, camera);
+
+        // calculate objects intersecting the picking ray
+        var intersects = raycaster.intersectObjects(scene.children);
+
+        if (intersects.length > 0) {
+            window.location.href = intersects[0].object.href;
+        }
+
+        renderer.render(scene, camera);
+
+    }
+
+    function animate() {
+        requestAnimationFrame(animate);
+        RATIO = window.innerWidth / window.innerHeight;
+        RAIL_LENGTH = 4 * RATIO * CAMERA_DISTANCE * getTanFromDegrees(CAMERA_ANGLE_IN_DEGREES / 2) + 4 * CAMERA_DISTANCE * getTanFromDegrees(CAMERA_ANGLE_IN_DEGREES / 2);
+        for (var i = 0; i < IMAGES.length; i++) {
+
+
+            if (TOP_IMAGES[i].position.x < -2 * RATIO * CAMERA_DISTANCE * getTanFromDegrees(CAMERA_ANGLE_IN_DEGREES / 2)) {
+                TOP_IMAGES[i].position.x = RAIL_LENGTH - 2 * RATIO * CAMERA_DISTANCE * getTanFromDegrees(CAMERA_ANGLE_IN_DEGREES / 2);
+            }
+            else {
+                TOP_IMAGES[i].position.x -= SPEED;
+            }
+            if (LEFT_IMAGES[i].position.y < -2 * CAMERA_DISTANCE * getTanFromDegrees(CAMERA_ANGLE_IN_DEGREES / 2)) {
+                LEFT_IMAGES[i].position.y = RAIL_LENGTH - 2 * CAMERA_DISTANCE * getTanFromDegrees(CAMERA_ANGLE_IN_DEGREES / 2);
+            }
+            else {
+                LEFT_IMAGES[i].position.y -= SPEED;
+            }
+            if (BOTTOM_IMAGES[i].position.x < 2 * RATIO * CAMERA_DISTANCE * getTanFromDegrees(CAMERA_ANGLE_IN_DEGREES / 2)) {
+                BOTTOM_IMAGES[i].position.x += SPEED;
+
+            }
+            else {
+                BOTTOM_IMAGES[i].position.x = -RAIL_LENGTH + 2 * RATIO * CAMERA_DISTANCE * getTanFromDegrees(CAMERA_ANGLE_IN_DEGREES / 2);
+
+            }
+            if (RIGHT_IMAGES[i].position.y < 2 * CAMERA_DISTANCE * getTanFromDegrees(CAMERA_ANGLE_IN_DEGREES / 2)) {
+                RIGHT_IMAGES[i].position.y += SPEED;
+            }
+            else {
+                RIGHT_IMAGES[i].position.y = -RAIL_LENGTH + 2 * CAMERA_DISTANCE * getTanFromDegrees(CAMERA_ANGLE_IN_DEGREES / 2);
+            }
+
+        }
+
+        renderer.render(scene, camera);
+    }
+
+    function moveMenu() {
+        window.location.href = '/all-menu.html';
+    }
+
+    init();
+    animate();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,142 @@
+.title:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 1px;
+    border-left: 1px solid #444;
+}
+
+.menu:after {
+    display: none;
+}
+
+.menu .top-nav {
+    margin-top: 30px;
+    margin-left: 30px;
+}
+
+.menu .top-nav .link:nth-child(1) {
+    margin-right: 70px;
+}
+
+.menu .top-nav .link {
+    border-bottom: 1px solid #444;
+}
+
+.menu .top-nav .link a {
+    color: #808080;
+}
+
+.menu .img {
+    margin: 50px 0 50px 30px;
+}
+
+.title .img-box .img {
+    display: inline-block;
+    width: 40%!important;
+    margin-bottom: 20px;
+}
+.plus-minus-toggle {
+    cursor: pointer;
+    height: 21px;
+    position: absolute;
+    top: 35px;
+    right: 0;
+    width: 21px;
+}
+
+.plus-minus-toggle-b {
+    cursor: pointer;
+    height: 21px;
+    position: absolute;
+    top: 25px;
+    right: 0;
+    width: 21px;
+}
+
+.b0 {
+    bottom: 0!important;
+}
+
+.collapsed:after {
+    transform: rotate(90deg);
+}
+.collapsed:before {
+    transform: rotate(180deg);
+}
+
+.plus-minus-toggle:after {
+    transform-origin: center;
+}
+
+.plus-minus-toggle-b:after {
+    transform-origin: center;
+}
+
+.plus-minus-toggle:after,
+.plus-minus-toggle:before {
+    background: #111;
+    content: '';
+    height: 2px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 21px;
+    transition: transform 500ms ease;
+}
+
+.plus-minus-toggle-b:after,
+.plus-minus-toggle-b:before {
+    background: #fff;
+    content: '';
+    height: 2px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 21px;
+    transition: transform 500ms ease;
+}
+
+.menu .partners {
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+    margin-top: 50px;
+    width: 42%;
+    margin-bottom: 30px;
+    margin-left: 30px;
+}
+
+.menu .partners p {
+    text-align: left;
+    line-height: 2!important;
+    font-family: 'korea-light';
+}
+
+@media (min-width: 9071px) {
+    .menu {
+        position: relative;
+        width: 63%;
+        flow: scroll;
+        float: left;
+    }
+
+    .img {
+        width: 94%!important;
+    }
+}
+
+.content_video {
+    position: relative;
+    text-align: center;
+    width: 100%;
+    padding-bottom: 56.26%;
+}
+
+
+iframe {
+    position: absolute;
+    display: block;
+}

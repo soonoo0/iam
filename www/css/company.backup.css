@@ -1,0 +1,103 @@
+.menu .content .block h4 {
+    font-size: 19px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.menu .content .block .img {
+    width: 100%;
+    height: 200px;
+    background: #444;
+}
+
+.menu .content .block .ceo-label {
+    width: 180px;
+    margin-bottom: 40px;
+    float: right;
+    color: #fff;
+    background: #333;
+    text-align: center;
+    padding: 15px;
+}
+
+.menu .content .block .logo-img {
+    width: 100%;
+    margin-top: 40px;
+}
+
+.menu .content .block .color-img {
+    width: 100%;
+    margin-top: 40px;
+    padding: 15px;
+}
+
+.mb-mt {
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.menu .content .block .number {
+    float: left;
+    color: #fff;
+    font-size: 30px;
+    width: 30%;
+    margin-top: 50px;
+}
+
+.menu .content .block .con {
+    float: left;
+    width: 70%;
+    margin-top: 45px;
+}
+
+.menu .content .block .con h3 {
+    font-size: 20px;
+    margin-bottom: 30px;
+    cursor: pointer;
+}
+
+.menu .content .block .con .right-content {
+    color: #808080;
+    line-height: 1.9;
+    font-size: 18px
+}
+
+.menu .content .block .map {
+    background: #fff;
+    width: 100%;
+    height: 200px;
+    margin-top: 30px;
+}
+
+@media (max-width: 1070px) {
+    .title {
+        display: none;
+    }
+    .menu {
+        width: 100%;
+    }
+
+    .menu .block {
+        width: 100%;
+    }
+
+    #comma {
+        display: none;
+    }
+
+    .second-line {
+        display: none;
+    }
+
+    .menu .content .block {
+        overflow: auto;
+    }
+
+    .menu .content .block .con .img {
+        width: 80%;
+    }
+
+    .mr {
+        padding: 30px!important;
+    }
+}

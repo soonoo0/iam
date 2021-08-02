@@ -1,0 +1,243 @@
+html, body {
+    position: relative;
+    height: 100%;
+    /*background: linear-gradient( to right, #000000 10%, #020202 20%, #040404 30%,
+    #060606 40%, #080808 50%, #0a0a0a 60%, #0c0c0c 70%, #0f0f0f 80%, #111111 90%,
+    #131313 100%);*/
+    background: #111;
+    color: #fff;
+    overflow: hidden;
+    min-height: 500px;
+}
+
+body {
+    padding: 70px;
+}
+
+body a {
+    color: #fff;
+}
+
+.line1 {
+    position: absolute;
+    left: 70px;
+    top: 0;
+    height: 100%;
+    border-left: 1px solid #808080;
+}
+
+.line2 {
+    position: absolute;
+    bottom: 50px;
+    left: 0;
+    height: 1px;
+    width: 100%;
+    border-top: 1px solid #808080;
+}
+
+.line3 {
+    position: absolute;
+    top: 230px;
+    left: 0;
+    height: 1px;
+    width: 22%;
+    border-top: 1px solid #808080;
+}
+
+.line4 {
+    position: absolute;
+    left: 300px;
+    bottom: 0;
+    height: 350px;
+    border-left: 1px solid #808080;
+}
+
+.line5 {
+    position: absolute;
+    right: 120px;
+    bottom: 0;
+    height: 87%;
+    border-left: 1px solid #808080;
+}
+
+.line6 {
+    position: absolute;
+    top: 179px;
+    right: 0;
+    height: 1px;
+    width: 32%;
+    border-top: 1px solid #808080;
+}
+
+.line7 {
+    position: absolute;
+    top: 79px;
+    right: 0;
+    height: 1px;
+    width: 17%;
+    border-top: 1px solid #808080;
+}
+
+.move1 {
+    position: absolute;
+    left: 130px;
+    bottom: -120px;
+    height: 70px;
+    width: 1px;
+    border-left: 1px dotted;
+    border-right-width:0;
+    border-top-width:0;
+    border-bottom-width:0;
+    border-image: linear-gradient(to bottom, #ffffff 0%, #000000 100%);
+    border-image-slice: 1;
+    animation: img-move-top 6s infinite linear;
+}
+
+.move2 {
+    position: absolute;
+    left: 220px;
+    bottom: -170px;
+    height: 120px;
+    width: 1px;
+    border-left: 1px dotted;
+    border-right-width:0;
+    border-top-width:0;
+    border-bottom-width:0;
+    border-image: linear-gradient(to bottom, #ffffff 0%, #000000 100%);
+    border-image-slice: 1;
+    animation: img-move-top 10s infinite linear;
+}
+
+.move3 {
+    position: absolute;
+    right: 200px;
+    bottom: -200px;
+    height: 170px;
+    width: 1px;
+    border-left: 1px dotted;
+    border-right-width:0;
+    border-top-width:0;
+    border-bottom-width:0;
+    border-image: linear-gradient(to bottom, #ffffff 0%, #000000 100%);
+    border-image-slice: 1;
+    animation: img-move-top 9s infinite linear;
+}
+
+.move4 {
+    position: absolute;
+    right: 100px;
+    top: -170px;
+    height: 150px;
+    width: 1px;
+    border-left: 1px dotted;
+    border-right-width:0;
+    border-top-width:0;
+    border-bottom-width:0;
+    border-image: linear-gradient(to top, #ffffff 0%, #000000 100%);
+    border-image-slice: 1;
+    animation: img-move-bottom 7s infinite linear;
+}
+
+@keyframes img-move-top {
+    100% { bottom: 120%; }
+}
+
+@keyframes img-move-bottom {
+    100% { top: 130%; }
+}
+
+.title {
+    text-align: center;
+    position: relative;
+    z-index: 999;
+    float: left;
+}
+
+.title .top {
+    text-align: left;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+.title h1 {
+    text-align: left;
+    margin-bottom: 25px;
+    margin-left: 10px;
+    font-size: 30px;
+}
+
+.title .box a {
+    text-align: center;
+    display: inline-block;
+    color: #808080;
+    padding: 6px 8px 2px;
+    margin-bottom: 20px;
+}
+
+.title .border a {
+    border: 1px solid #808080;
+}
+
+.menu {
+    padding-left: 150px;
+    margin-top: 25px;
+    text-align: center;
+}
+
+.menu .first {
+    width: 35%;
+    float: left;
+}
+.menu .second {
+    width: 63%;
+    float: left;
+}
+
+.menu ul {
+    position: relative;
+    width: 33.3%;
+    flex: auto;
+}
+
+.menu ul p {
+    text-align: left;
+    font-size: 30px;
+    color: #aaaaaa;
+}
+
+.menu ul li {
+    position: relative;
+    font-size: 24px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    line-height: 1.7;
+    z-index: 20;
+    color: #fff;
+    padding-right: 20px;
+}
+
+.menu ul li img {
+    margin: 0 auto;
+    width: 80%;
+}
+
+.menu ul:nth-of-type(2) li,
+.menu ul:nth-of-type(3) li {
+    font-size: 20px;
+    padding-right: 40px;
+}
+
+.menu ul li:last-child,
+.menu ul li a:last-child {
+    margin-bottom: 0;
+}
+
+.menu ul:after {
+    content: '';
+    position: absolute;
+    width: 3px;
+    height: 500%;
+    bottom: 0;
+    left: -15px;
+    border-left: 1px solid #808080;
+}
